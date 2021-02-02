@@ -19,3 +19,5 @@ Set up a multi-service cluster!
 $ ./setup.sh
 ```
 
+> You can set `RESET_DOCKER=true` to reset all docker cache and run. Just run command `RESET_DOCKER=true ./setup.sh`
+

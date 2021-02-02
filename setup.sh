@@ -1,8 +1,14 @@
 #!/bin/sh
 
+if [ "$RESET_DOCKER" = true ]
+then
+    echo; echo ">> 🗑  Delete Docker Images"; echo;
+    docker system prune -a -f
+fi
+
 echo; echo ">> 🐋  Setting minikube"; echo;
 minikube delete
-minikube start --driver=hyperkit
+minikube start --driver=docker
 
 # https://velog.io/@humblego42/쿠버네티스-Minikube-MetalLB-셋팅-자동화하기
 echo; echo ">> 🔧  Setting MetalLB"; echo;
