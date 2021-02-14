@@ -13,7 +13,7 @@ Set up a multi-service cluster!
 
 ### 💻 How to Run
 
-> 🚨 Before running, `docker`, `minikube` and `kubectl` are installed in local enviroment.
+> 🚨 Before running, `docker`, `minikube`, `kubectl` and `VirtualBox` are installed in local enviroment.
 
 ```bash
 $ ./setup.sh

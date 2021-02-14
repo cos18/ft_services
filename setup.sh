@@ -7,11 +7,13 @@ then
 fi
 
 echo; echo ">> 🐋  Setting minikube"; echo;
+rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases
 minikube delete
-minikube start --driver=hyperkit
+minikube start --driver=virtualbox
+eval $(minikube docker-env)
 
 echo; echo ">> 🔨  Build Docker image"; echo;
-docker build -t ft_services_nginx srcs/nginx
+docker build -t ft-services-nginx srcs/nginx
 
 echo; echo ">> 🎨  Apply yaml in minikube"; echo;
 kubectl apply -f srcs/nginx/nginx.yaml
