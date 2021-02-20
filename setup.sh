@@ -7,8 +7,8 @@ then
 fi
 
 echo; echo ">> 🐋  Setting minikube"; echo;
-rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases
 minikube delete
+rm -rf ~/Library/VirtualBox/HostInterfaceNetworking-vboxnet0-Dhcpd.leases
 minikube start --driver=virtualbox
 eval $(minikube docker-env)
 
