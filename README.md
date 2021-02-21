@@ -18,6 +18,3 @@ Set up a multi-service cluster!
 ```bash
 $ ./setup.sh
 ```
-
-> You can set `RESET_FT_SERVICES=true` to reset all docker cache and run. Just run command `RESET_FT_SERVICES=true ./setup.sh`
-

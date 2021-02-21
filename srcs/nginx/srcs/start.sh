@@ -1,4 +1,3 @@
 #!/bin/sh
 
-/usr/sbin/sshd
-/usr/sbin/nginx -g 'daemon off;'
+telegraf & /usr/sbin/sshd & /usr/sbin/nginx -g 'daemon off;'
