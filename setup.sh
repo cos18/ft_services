@@ -11,15 +11,19 @@ kubectl apply -f srcs/metallb/config.yaml
 
 echo; echo ">> 🔨  Build Docker image"; echo;
 docker build -t ft-services-influxdb srcs/influxdb
+docker build -t ft-services-mysql srcs/mysql
 docker build -t ft-services-telegraf srcs/telegraf
 docker build -t ft-services-nginx srcs/nginx
 docker build -t ft-services-grafana srcs/grafana
+docker build -t ft-services-phpmyadmin srcs/phpmyadmin
 
 echo; echo ">> 🎨  Apply yaml in minikube"; echo;
 kubectl apply -f srcs/influxdb/influxdb.yaml
+kubectl apply -f srcs/mysql/mysql.yaml
 kubectl apply -f srcs/telegraf/telegraf.yaml
 kubectl apply -f srcs/nginx/nginx.yaml
 kubectl apply -f srcs/grafana/grafana.yaml
+kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
 
 echo; echo ">> 🛠  Config minikube addons"; echo;
 minikube addons enable metrics-server

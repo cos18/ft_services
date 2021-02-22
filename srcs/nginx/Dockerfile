@@ -1,9 +1,10 @@
 FROM        alpine:3.12
 
-RUN         apk --update --no-cache add nginx openssh-server openssl
+RUN         apk --update --no-cache add nginx
 RUN         mkdir -p /run/nginx; mkdir -p /var/www
-
 RUN         echo "root:ftservice" | chpasswd
+
+RUN         apk --update --no-cache add openssh-server openssl
 RUN         openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj "/C=KR/ST=Seoul/L=Gangdonggu/O=Godeokro/CN=127.0.0.1" -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt
 RUN         openssl dhparam -dsaparam -out /etc/ssl/certs/dhparam.pem 2048
 RUN		      ssh-keygen -A
