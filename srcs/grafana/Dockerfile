@@ -1,10 +1,8 @@
 FROM        alpine:3.12
 
-RUN         apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
-RUN         apk add grafana --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
+RUN         apk --update --no-cache add grafana --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted
 
 COPY	      /srcs/start.sh /
-COPY        /srcs/telegraf.conf /etc/telegraf/
 
 EXPOSE      3000
 ENTRYPOINT  ["sh", "start.sh"]

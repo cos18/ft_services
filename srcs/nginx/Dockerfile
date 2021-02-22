@@ -1,6 +1,5 @@
 FROM        alpine:3.12
 
-RUN         apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 RUN         apk --update --no-cache add nginx openssh-server openssl
 RUN         mkdir -p /run/nginx; mkdir -p /var/www
 
@@ -11,7 +10,6 @@ RUN		      ssh-keygen -A
 
 COPY	      /srcs/sshd_config /etc/ssh/
 COPY	      /srcs/default.conf /etc/nginx/conf.d/
-COPY        /srcs/telegraf.conf /etc/telegraf/
 COPY	      /srcs/index.html /var/www/
 COPY	      /srcs/start.sh /
 

@@ -21,31 +21,11 @@ metadata:
   labels:
     app: influxdb
 spec:
-  type: ClusterIP
   selector:
-    app: nginx
-  ports:
-    - name: influxdb
-      port: 8086
-      protocol: TCP
-      targetPort: 8086
-
----
-
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: influxdb-pv
-  labels:
     app: influxdb
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"
+  ports:
+    - port: 8086
+      targetPort: 8086
 
 ---
 
@@ -71,24 +51,16 @@ metadata:
   labels:
     app: influxdb
 spec:
-  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: influxdb
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: influxdb
     spec:
-      volumes:
-      - name: influxdb-storage
-        persistentVolumeClaim:
-          claimName: influxdb-pvc
       containers:
       - image: ft-services-influxdb
         imagePullPolicy: Never
@@ -98,4 +70,9 @@ spec:
         volumeMounts:
         - name: influxdb-storage
           mountPath: /var/lib/influxdb
+      volumes:
+      - name: influxdb-storage
+        persistentVolumeClaim:
+          claimName: influxdb-pvc
+
       

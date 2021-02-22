@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf
+  labels:
+    app: telegraf
+spec:
+  selector:
+    matchLabels:
+      app: telegraf
+  template:
+    metadata:
+      labels:
+        app: telegraf
+    spec:
+      containers:
+        - image: ft-services-telegraf
+          imagePullPolicy: Never
+          name: telegraf
+          volumeMounts:
+            - name: docker-unix-socket
+              mountPath: /var/run/docker.sock
+          envFrom:
+            - secretRef:
+                name: influxdb-secret
+      volumes:
+        - name: docker-unix-socket
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket

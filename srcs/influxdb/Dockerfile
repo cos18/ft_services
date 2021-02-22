@@ -1,11 +1,9 @@
 FROM        alpine:3.12
 
-RUN         apk add telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
-RUN         apk add influxdb
+RUN         apk --update --no-cache add influxdb
 
-COPY        /srcs/telegraf.conf /etc/telegraf/
-COPY        /srcs/influxdb.conf /etc
-COPY        /srcs/start.sh /
+RUN         mkdir -p /etc/influxdb
+COPY        /srcs/influxdb.conf /etc/influxdb/influxdb.conf
 
 EXPOSE      8086
-ENTRYPOINT  ["sh", "start.sh"]
+ENTRYPOINT  ["/usr/sbin/influxd"]

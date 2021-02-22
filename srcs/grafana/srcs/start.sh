@@ -1,3 +1,3 @@
 #!/bin/sh
 
-telegraf & grafana-sever --homepath=/usr/share/grafana
+grafana-server --homepath=/usr/share/grafana
