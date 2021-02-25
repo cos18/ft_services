@@ -26,6 +26,20 @@ data:
       user: admin
       password: passwd
       url: http://influxdb:8086
+  dashboards.yml: |
+    apiVersion: 1
+    providers:
+    - name: 'influxdb'
+      orgId: 1
+      folder: ''
+      folderUid: ''
+      type: file
+      disableDeletion: false
+      editable: true
+      updateIntervalSeconds: 5
+      allowUiUpdates: true
+      options:
+        path: /usr/share/grafana/public/dashboards
 
 ---
 
@@ -97,3 +111,5 @@ spec:
           items:
           - key: datasources.yml
             path: datasources/datasources.yml
+          - key: dashboards.yml
+            path: dashboards/dashboards.yml

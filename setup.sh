@@ -17,6 +17,7 @@ docker build -t ft-services-nginx srcs/nginx
 docker build -t ft-services-grafana srcs/grafana
 docker build -t ft-services-phpmyadmin srcs/phpmyadmin
 docker build -t ft-services-wordpress srcs/wordpress
+docker build -t ft-services-ftps srcs/ftps
 
 echo; echo ">> 🎨  Apply yaml in minikube"; echo;
 kubectl apply -f srcs/influxdb/influxdb.yaml
@@ -26,6 +27,7 @@ kubectl apply -f srcs/nginx/nginx.yaml
 kubectl apply -f srcs/grafana/grafana.yaml
 kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
 kubectl apply -f srcs/wordpress/wordpress.yaml
+kubectl apply -f srcs/ftps/ftps.yaml
 
 echo; echo ">> 🛠  Config minikube addons"; echo;
 minikube addons enable metrics-server

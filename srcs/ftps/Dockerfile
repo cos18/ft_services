@@ -1,12 +1,10 @@
-FROM alpine:3.12.0
+FROM        alpine:3.12.0
 
-RUN apk --update --no-cache add bash vsftpd openssl
+RUN         apk --update --no-cache add bash vsftpd openssl
 
-ARG PASV=${pasv_address}
+ARG         PASV=${pasv_address}
 
-ENV FTP_USER=user \
-  FTP_PASS=pass \
-  PASV_ENABLE=YES \
+ENV         PASV_ENABLE=YES \
   PASV_MIN_PORT=20000 \
   PASV_MAX_PORT=20003 \
   NODE_ADDRESS=${PASV}
